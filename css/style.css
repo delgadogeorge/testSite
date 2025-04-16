@@ -1,8 +1,7 @@
 body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: white;
+	font-family: Consolas, Monospace, sans-serif;
+	font-size: 16px;
+	;
 }
 
 header {
@@ -17,10 +16,9 @@ header {
 	background-color: #004890;
 }
 
-.main-page {
-	padding: 20px;
-	text-align: center;
-}
+/* .upload-docs {
+	padding: 1px;
+} */
 
 footer {
 	background-color: #333;
@@ -33,7 +31,7 @@ footer {
 }
 
 button {
-	padding: 10px 20px;
+	padding: 5px 5px;
 	font-size: 16px;
 	background-color: #004890;
 	color: white;
@@ -52,22 +50,36 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
-	background-color: #399bfc;
-}
-
 .scrollable-window {
-	width: 98%;
-	height: 480px;
-	border: 1px solid #ccc;
-	padding: 10px;
+	height: 750px;
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
 	overflow-y: auto;
-	display: -moz-inline-table;
-	justify-content: center;
-	align-items: center;
+	border: 1px solid black;
+	padding: 1rem;
+	box-sizing: border-box;
+	border-radius: 8px;
 	background-color: #fafafa;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
+	margin: 1%;
+}
+
+.scrollable-window table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.scrollable-window th,
+.scrollable-window td {
+	width: 15%;
+	white-space: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.json-data {
+	flex-grow: 1;
 }
 
 form {
@@ -109,8 +121,8 @@ input {
 }
 
 .navbar .btn-log {
-	background-color: rgb(39, 160, 39);
-	color: white;
+	background-color: rgb(39, 192, 39);
+	color: black;
 	border: none;
 }
 
@@ -118,6 +130,6 @@ input {
 	background-color: rgb(101, 216, 101);
 }
 
-.nav-link-user {
+.nav-item-user {
 	color: white;
 }

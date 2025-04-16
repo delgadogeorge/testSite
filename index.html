@@ -9,39 +9,54 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/tables.css" />
 	<link rel="icon" type="image/png" sizes="16x16 32x32 48x48" href="images/Linux-Logo.wine.png" />
-
 </head>
 
 <body>
 	<div id="nav-placeholder"></div>
-
-	<main class="main-page">
-		<h1>Upload Excel File</h1>
-		<p>Upload timecard badging data to create a modified file</p>
-		<label for="excelFile">Upload File</label>
-		<input type="file" id="excelFile" accept=".xlsx, .xls" />
-		<br /><br />
-		<button id="toggleBtn">Show Data</button>
-		<button id="exportData">Export Modified Data</button>
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-				aria-expanded="false">
-				Filter by Data type
-			</button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="#">Valid Data</a></li>
-				<li><a class="dropdown-item" href="#">Forced Door</a></li>
-				<li><a class="dropdown-item" href="#">Null Data</a></li>
-			</ul>
+	<main class="upload-docs">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 p-4" id="upload-docs">
+					<h1>Upload File</h1>
+					<label for="excelFile">Upload File</label>
+					<input type="file" id="excelFile" accept=".xlsx, .xls" />
+					<!-- <br /><br /> -->
+					<form class="d-flex align-items-center gap-2">
+						<button class="btn btn-primary" id="toggleBtn" type="button">Show Data</button>
+						<button class="btn btn-primary" id="exportData" type="button">Export Modified Data</button>
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Filter by Data type
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Valid Data</a></li>
+								<li><a class="dropdown-item" href="#">Forced Door</a></li>
+								<li><a class="dropdown-item" href="#">Null Data</a></li>
+							</ul>
+						</div>
+					</form>
+					<form action="" method="get">
+						<label for="searchBox">Search </label>
+						<input type="text" id="searchBox" placeholder="Search..." />
+					</form>
+				</div>
+				<div class="col-md-8 p-4" id="json-data">
+					<div id="show" style="display: none;">
+						<div class="json-data">
+							<section class="scrollable-window" id="output"></section>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<form action="" method="get">
-			<label for="searchBox">Search </label>
-			<input type="text" id="searchBox" placeholder="Search..." />
 	</main>
 
-	<div id="show" style="display: none; justify-content: center">
-		<section class="scrollable-window" id="output"></section>
-	</div>
+	<!-- <div id="show" style="display: none; justify-content: center">
+					<section class="scrollable-window" id="output"></section>
+				</div> -->
+
+
 
 	<div id="footer-placeholder"></div>
 
