@@ -1,0 +1,18 @@
+body,
+#mytable {
+    font-family: Consolas, Monospace, sans-serif;
+    font-size: 16px;
+}
+
+table,
+th,
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td[rowspan] {
+    /*height: 150px; !* Set a height for visualization *!*/
+    vertical-align: middle;
+    /* Ensure vertical centering for rowspan */
+}

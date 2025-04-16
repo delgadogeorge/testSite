@@ -1,0 +1,123 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+}
+
+header {
+	background-color: #004890;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	font-size: x-large;
+}
+
+.custom-navbar-bg {
+	background-color: #004890;
+}
+
+.main-page {
+	padding: 20px;
+	text-align: center;
+}
+
+footer {
+	background-color: #333;
+	color: white;
+	padding: 2px;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+}
+
+button {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #004890;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.toggleBtn {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #004890;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #399bfc;
+}
+
+.scrollable-window {
+	width: 98%;
+	height: 480px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	overflow-y: auto;
+	display: -moz-inline-table;
+	justify-content: center;
+	align-items: center;
+	background-color: #fafafa;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+form {
+	padding: 10px;
+}
+
+.navbar form {
+	padding: 0;
+}
+
+.navbar .form-control {
+	margin-bottom: 0;
+}
+
+.form-after {
+	display: flex;
+	align-items: center;
+}
+
+input {
+	margin-bottom: 10px;
+	padding: 4px 6px;
+	font-size: 13px;
+	width: 200px;
+}
+
+.navbar .btn {
+	background-color: #116bba;
+	color: white;
+	border: none;
+}
+
+.navbar .btn:hover {
+	background-color: #4fb5de;
+}
+
+.custom-navbar-bg .nav-link.dropdown-toggle {
+	color: white;
+}
+
+.navbar .btn-log {
+	background-color: rgb(39, 160, 39);
+	color: white;
+	border: none;
+}
+
+.navbar .btn-log:hover {
+	background-color: rgb(101, 216, 101);
+}
+
+.nav-link-user {
+	color: white;
+}

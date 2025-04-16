@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Timecard Demo</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/tables.css" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16 32x32 48x48"
+			href="images/Linux-Logo.wine.png"
+		/>
+	</head>
+	<body>
+		<div id="nav-placeholder"></div>
+
+		<!-- Should this be a form to submit for jquery? -->
+		<fieldset>
+			<legend>Request Employee Data</legend>
+			<label for="shift">Select Shift:</label>
+			<select name="shift" id="shift">
+				<option value="">--Select a shift--</option>
+				<option value="A">Shift A (0615 - 1845)</option>
+				<option value="B">Shift B (1815 - 0645)</option>
+				<option value="C">Shift C (0615 - 1845)</option>
+				<option value="D">Shift D (1845 - 0645)</option>
+				<option value="E">Shift E (Non-Hourly)</option>
+			</select>
+			<label for="startDate">Start Date</label>
+			<input type="date" id="startDate" value="yyyy-MM-dd" />
+			<label for="endDate">End Date</label>
+			<input type="date" id="endDate" value="yyyy-MM-dd" />
+			<label for="firstName">First Name:</label>
+			<input type="text" id="firstName" placeholder="Enter First Name" />
+			<label for="lastName">Last Name:</label>
+			<input type="text" id="lastName" placeholder="Enter Last Name" />
+		</fieldset>
+
+		<div id="footer-placeholder"></div>
+
+		<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/tempMessage.js"></script>
+		<script src="js/fileReader.js"></script>
+		<script src="js/showElement.js"></script>
+		<script src="js/filterTable.js"></script>
+		<script src="js/exportFile.js"></script>
+		<script src="js/include.js"></script>
+	</body>
+</html>
