@@ -43,9 +43,6 @@ document
 				});
 
 				const matchSource = matchSourceKeys || null;
-				// const matchSource = matchSourceKeys
-				// 	? matchSourceKeys.charAt(0).toUpperCase() + matchSourceKeys.slice(1)
-				// 	: null;
 
 				if ((matchSource === "Fab" || matchSource === "Entry" || matchSource === "SubFab") && badgeEntry) {
 					row["Source"] = `${matchSource} ${badgeEntry}`;
@@ -60,9 +57,15 @@ document
 				return row;
 
 			});
-			//console.log("Filtered JSON", jsonFilter);
+			//console.log(" 'jsonFilter' ", jsonFilter);
 
 			jsonMod = jsonFilter;
+
+			console.log(" 'jsonMod Data' ", jsonMod);
+
+			//jsonMod += jsonFilter;
+
+			//Everything after this is to display data
 
 			let output = "<table><tr>";
 			for (let columnHead in jsonFilter[0]) {
@@ -80,7 +83,7 @@ document
 			output += "</table>";
 
 			document.getElementById("output").innerHTML = output;
-			console.log("Modified data", jsonMod);
+			//console.log("Modified data", jsonMod);
 		};
 
 		reader.readAsArrayBuffer(file);
