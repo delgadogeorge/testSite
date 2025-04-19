@@ -4,91 +4,76 @@
 
 let jsonMod = [];
 
-document
-	.getElementById("excelFile")
-	.addEventListener("change", function (readData) {
-		const files = readData.target.files;
-		jsonMod = []; // Reset for new upload
-		let filesProcessed = 0;
+function processExcelFiles(files) {
+	jsonMod = [];
+	let filesProcessed = 0;
 
-		for (let i = 0; i < files.length; i++) {
-			const reader = new FileReader();
-			const file = files[i];
+	const sourceKeys = {
+		Entry: ["East Entry", "East Lobby", "Employee Entrance"],
+		Fab: ["BGBM", "Main Fab", "New Sort Gown Room"],
+		SubFab: ["SubFab"],
+		IT: ["IDF", "Computer Room", "Archive Room"],
+		Null: [
+			"ERT Room",
+			"Library",
+			"Arsenic Door",
+			"North Hall Door",
+			"Parking Lot",
+			"Temperature Test",
+			"SEM Room",
+			"FA Lab",
+			"Admin",
+		],
+	};
 
-			reader.onload = function (event) {
-				const data = new Uint8Array(event.target.result);
-				const workbook = XLSX.read(data, { type: "array" });
-				const sheetName = workbook.SheetNames[0];
-				const worksheet = workbook.Sheets[sheetName];
-				const json = XLSX.utils.sheet_to_json(worksheet, { raw: false });
+	for (const key in sourceKeys) {
+		sourceKeys[key] = sourceKeys[key].map((keyword) => keyword.toLowerCase());
+	}
 
-				const sourceKeys = {
-					Entry: ["East Entry", "East Lobby", "Employee Entrance"],
-					Fab: ["BGBM", "Main Fab", "New Sort Gown Room"],
-					SubFab: ["SubFab"],
-					IT: ["IDF", "Computer Room", "Archive Room"],
-					Null: [
-						"ERT Room",
-						"Library",
-						"Arsenic Door",
-						"North Hall Door",
-						"Parking Lot",
-						"Temperature Test",
-						"SEM Room",
-						"FA Lab",
-						"Admin",
-					],
-				};
+	for (let i = 0; i < files.length; i++) {
+		const reader = new FileReader();
+		const file = files[i];
 
-				for (const key in sourceKeys) {
-					sourceKeys[key] = sourceKeys[key].map((keyword) =>
-						keyword.toLowerCase()
-					);
+		reader.onload = function (event) {
+			const data = new Uint8Array(event.target.result);
+			const workbook = XLSX.read(data, { type: "array" });
+			const sheetName = workbook.SheetNames[0];
+			const worksheet = workbook.Sheets[sheetName];
+			const json = XLSX.utils.sheet_to_json(worksheet, { raw: false });
+
+			const jsonFilter = json.map((row) => {
+				let source = row["Source"]?.toLowerCase() || "";
+				let badgeEntry = "";
+
+				if (source.includes("in")) badgeEntry = "In";
+				else if (source.includes("out")) badgeEntry = "Out";
+
+				const matchSourceKeys = Object.keys(sourceKeys).find((sourceType) =>
+					sourceKeys[sourceType].some((keyword) => source.includes(keyword))
+				);
+
+				const matchSource = matchSourceKeys || null;
+
+				if (["Fab", "Entry", "SubFab"].includes(matchSource) && badgeEntry) {
+					row["Source"] = `${matchSource} ${badgeEntry}`;
+				} else if (matchSource === "IT") {
+					row["Source"] = "IT";
+				} else {
+					row["Source"] = "Null";
 				}
 
-				const jsonFilter = json.map((row) => {
-					let source = row["Source"]?.toLowerCase() || "";
-					let badgeEntry = "";
-					let ITData = "IT";
-					let nullData = "Null";
+				return row;
+			});
 
-					if (source.includes("in")) badgeEntry = "In";
-					else if (source.includes("out")) badgeEntry = "Out";
+			jsonMod = jsonMod.concat(jsonFilter);
+			filesProcessed++;
 
-					const matchSourceKeys = Object.keys(sourceKeys).find((sourceType) => {
-						const keywords = sourceKeys[sourceType];
-						return keywords.some((keyword) => source.includes(keyword));
-					});
+			if (filesProcessed === files.length) {
+				displayTable(jsonMod);
+				console.log("All processed data:", jsonMod);
+			}
+		};
 
-					const matchSource = matchSourceKeys || null;
-
-					if (
-						(matchSource === "Fab" ||
-							matchSource === "Entry" ||
-							matchSource === "SubFab") &&
-						badgeEntry
-					) {
-						row["Source"] = `${matchSource} ${badgeEntry}`;
-					} else if (matchSource === "IT") {
-						row["Source"] = `${ITData}`;
-					} else {
-						row["Source"] = `${nullData}`;
-					}
-
-					return row;
-				});
-
-				jsonMod = jsonMod.concat(jsonFilter);
-				filesProcessed++;
-
-				if (filesProcessed === files.length) {
-					// only gets to here once ALL files have been read
-					displayTable(jsonMod);
-					console.log("All processed data:", jsonMod);
-				}
-			};
-
-			reader.readAsArrayBuffer(file);
-		}
-		return jsonMod;
-	});
+		reader.readAsArrayBuffer(file);
+	}
+}

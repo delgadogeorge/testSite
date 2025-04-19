@@ -11,6 +11,10 @@ header {
 	font-size: x-large;
 }
 
+.upload-h1 {
+	text-align: center;
+}
+
 .custom-navbar-bg {
 	background-color: #004890;
 }
@@ -154,7 +158,13 @@ input {
 	transition: background-color 0.3s ease;
 }
 
+.drop-zone label {
+	cursor: pointer;
+}
+
 .drop-zone.dragover {
-	background-color: #e8f4ff;
+	background-color: #e1f0ff
+	cursor: pointer;
 	border-color: #0d6efd;
 }
+

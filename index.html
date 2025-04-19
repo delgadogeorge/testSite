@@ -24,13 +24,12 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-4 p-2 border-end" id="upload-docs">
-						<h1>Upload File(s)</h1>
+						<h1 class="upload-h1">Upload File(s)</h1>
 						<div
+							id="dropZone"
 							class="drop-zone border border-2 border-primary rounded p-4 mb-3 text-center"
+							aria-label="Click to upload Excel File(s)"
 						>
-							<p class="mb-2">
-								Drag & Drop your Excel files here or click to select
-							</p>
 							<input
 								type="file"
 								id="excelFile"
@@ -38,11 +37,13 @@
 								multiple
 								hidden
 							/>
-							<div id="file-list" class="small text-muted mt-2"></div>
+							<label for="excelFile" class="d-block w-100 cursor-pointer">
+								<p class="mb-2 fw-medium border-bottom border-2">
+									Drag & Drop your Excel file(s) here or click to select
+								</p>
+							</label>
+							<div id="file-list" class="fw-medium text-muted mt-2"></div>
 						</div>
-						<button id="resetFiles" class="btn btn-danger mt-2">
-							Reset Files
-						</button>
 						<form class="d-flex flex-wrap align-items-center gap-2">
 							<button class="btn btn-primary" id="exportData" type="button">
 								Export Modified Data
@@ -62,6 +63,9 @@
 									<li><a class="dropdown-item" href="#">Null Data</a></li>
 								</ul>
 							</div>
+							<button id="resetFiles" class="btn btn-danger mt-2">
+								Reset Files
+							</button>
 						</form>
 						<form
 							class="d-flex align-items-center gap-2"

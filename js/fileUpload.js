@@ -18,9 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 
-	// Open file dialog when dropZone is clicked
-	dropZone.addEventListener("click", () => fileInput.click());
-
 	// Drag styling
 	dropZone.addEventListener("dragover", () =>
 		dropZone.classList.add("dragover")
