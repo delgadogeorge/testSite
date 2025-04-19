@@ -1,5 +1,5 @@
 <nav
-	class="navbar navbar-expand-lg navbar-dark custom-navbar-bg compact-navbar"
+	class="navbar navbar-expand-lg navbar-dark bg-primary text-dark compact-navbar"
 >
 	<div class="container-fluid">
 		<a class="navbar-brand" href="#">Timecard Demo</a>
@@ -34,7 +34,7 @@
 					<ul class="dropdown-menu">
 						<li>
 							<a class="dropdown-item" href="exportForm.html"
-								>Request Employee Data</a
+								>Send Employee Data</a
 							>
 						</li>
 						<!-- <li><hr class="dropdown-divider" /></li>
@@ -45,25 +45,26 @@
 				<!-- to do so change div to form -->
 				<div class="d-flex align-items-center gap-2" role="search">
 					<input
+						id="search-bar"
 						class="form-control form-control-sm"
 						type="search"
 						placeholder="Search"
 						aria-label="Search"
 					/>
-					<button class="btn btn-outline-success btn-sm" type="submit">
+					<label for="search-bar"></label>
+					<button
+						id="search-button"
+						class="btn btn-primary search-btn-bg"
+						type="submit"
+					>
 						Search
 					</button>
+					<label for="search-button"></label>
 				</div>
 			</ul>
 			<form class="d-flex align-items-center gap-2" role="sign-in">
-				<span
-					class="nav-item-user"
-					type="sign-in"
-					placeholder="Search"
-					aria-label="sign-in"
-					>Welcome!</span
-				>
-				<button class="btn btn-sm btn-log" type="button">
+				<span class="text-light fs-5">WELCOME!</span>
+				<button type="button" class="btn btn-success">
 					<!--add type submit later-->
 					Sign In
 				</button>

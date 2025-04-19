@@ -45,8 +45,17 @@ function processExcelFiles(files) {
 				let source = row["Source"]?.toLowerCase() || "";
 				let badgeEntry = "";
 
-				if (source.includes("in")) badgeEntry = "In";
-				else if (source.includes("out")) badgeEntry = "Out";
+				if (/\bin\b/i.test(source)) {
+					// '/\bin\b/' checks the specific word with '\b' being a boundary of a word... spacing
+					badgeEntry = "In";
+				} else if (/\bout\b/i.test(source)) {
+					//...'i.test(source)' the 'i' makes it case-INSENSITIVE and test checks the column or JSON values
+					badgeEntry = "Out";
+				}
+
+				// Leave here so I can re-use it later in case updates are incorrect
+				// if (source.includes("in")) badgeEntry = "In";
+				// else if (source.includes("out")) badgeEntry = "Out";
 
 				const matchSourceKeys = Object.keys(sourceKeys).find((sourceType) =>
 					sourceKeys[sourceType].some((keyword) => source.includes(keyword))
