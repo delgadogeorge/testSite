@@ -1,3 +1,8 @@
+//This script was written with the help of AI.
+//This script adds drag/drop file features and can select the area to open file browser.
+//Multiple files are allowed.
+//This script displays the file names and has a reset button
+
 let allFiles = [];
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,3 +1,7 @@
+//This script takes any excel file(s) and filters the data.
+//This should be updated if there are any additional "ID's" to modify are needed
+//Or additional updates to filtering data is needed.
+
 let jsonMod = [];
 
 document

@@ -1,3 +1,7 @@
+//This script allows the user to enter data into the search bar and filter data from the table
+
+//additional updates are required to filter by data type.
+
 const element = document.getElementById("searchBox");
 
 function filterTable() {

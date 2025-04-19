@@ -1,3 +1,8 @@
+//This script has multiple features.
+//It sorts the filtered data into a table.
+//The html table section is blurred and has an overlayed message.
+//This script removes the styling when the data is uploaded
+
 const overlay = document.getElementById("overlay-message");
 if (!overlay) {
 	console.warn("Overlay element not found at time of displayTable()");
