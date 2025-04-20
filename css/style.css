@@ -19,29 +19,15 @@ body {
 .scrollable-window {
 	height: 750px;
 	width: 100%;
-	min-width: 100%;
-	max-width: 100%;
+	/* min-width: 100%;
+	max-width: 100%; */
 	overflow-y: auto;
-	border: 1px solid black;
+	border: 1px solid gray;
 	padding: 1rem;
 	box-sizing: border-box;
 	border-radius: 8px;
 	background-color: #fafafa;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-	margin: 1%;
-}
-
-.scrollable-window table {
-	width: 100%;
-	table-layout: fixed;
-}
-
-.scrollable-window th,
-.scrollable-window td {
-	width: 15%;
-	white-space: inherit;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
 }
 
 .json-data {

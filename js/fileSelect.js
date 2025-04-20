@@ -85,3 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 });
+
+//Drag and drop works for the entire box but not for clicking.
+//I need to update so "click" can be used anywhere on the box.

@@ -29,11 +29,12 @@ function displayTable(data) {
 		showContainer.style.display = "block";
 	}
 
-	let output = "<table><tr>";
+	let output = '<table class="table table-sm table-striped">';
+	output += "<thead><tr>";
 	for (let columnHead in data[0]) {
-		output += `<th>${columnHead}</th>`;
+		output += `<th scope="col">${columnHead}</th>`;
 	}
-	output += "</tr>";
+	output += '</tr></thead><tbody class="table-group-divider">';
 
 	data.forEach((row) => {
 		output += "<tr>";
@@ -43,6 +44,23 @@ function displayTable(data) {
 		output += "</tr>";
 	});
 
-	output += "</table>";
+	output += "</tbody></table>";
 	html.innerHTML = output;
+
+	// let output = "<table><tr>";
+	// for (let columnHead in data[0]) {
+	// 	output += `<th>${columnHead}</th>`;
+	// }
+	// output += "</tr>";
+
+	// data.forEach((row) => {
+	// 	output += "<tr>";
+	// 	for (let columnHead in row) {
+	// 		output += `<td>${row[columnHead]}</td>`;
+	// 	}
+	// 	output += "</tr>";
+	// });
+
+	// output += "</table>";
+	// html.innerHTML = output;
 }
