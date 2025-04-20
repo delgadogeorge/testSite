@@ -17,30 +17,32 @@
 			href="images/Linux-Logo.wine.png"
 		/>
 	</head>
-	<body>
+	<body class="d-flex flex-column min-vh-100">
 		<div id="nav-placeholder"></div>
 
-		<!-- Should this be a form to submit for jquery? -->
-		<fieldset>
-			<legend>Send Employee Data</legend>
-			<label for="shift">Select Shift:</label>
-			<select name="shift" id="shift">
-				<option value="">--Select a shift--</option>
-				<option value="A">Shift A (0615 - 1845)</option>
-				<option value="B">Shift B (1815 - 0645)</option>
-				<option value="C">Shift C (0615 - 1845)</option>
-				<option value="D">Shift D (1845 - 0645)</option>
-				<option value="E">Shift E (Non-Hourly)</option>
-			</select>
-			<label for="startDate">Start Date</label>
-			<input type="date" id="startDate" value="yyyy-MM-dd" />
-			<label for="endDate">End Date</label>
-			<input type="date" id="endDate" value="yyyy-MM-dd" />
-			<label for="firstName">First Name:</label>
-			<input type="text" id="firstName" placeholder="Enter First Name" />
-			<label for="lastName">Last Name:</label>
-			<input type="text" id="lastName" placeholder="Enter Last Name" />
-		</fieldset>
+		<main class="flex-grow-1">
+			<!-- Should this be a form to submit for jquery? -->
+			<fieldset class="d-flex flex-wrap align-items-center gap-2 px-2">
+				<legend>Send Employee Data</legend>
+				<label for="shift">Select Shift:</label>
+				<select name="shift" id="shift">
+					<option value="">--Select a shift--</option>
+					<option value="A">Shift A (0615 - 1845)</option>
+					<option value="B">Shift B (1815 - 0645)</option>
+					<option value="C">Shift C (0615 - 1845)</option>
+					<option value="D">Shift D (1845 - 0645)</option>
+					<option value="E">Shift E (Non-Hourly)</option>
+				</select>
+				<label for="startDate">Start Date</label>
+				<input type="date" id="startDate" value="yyyy-MM-dd" />
+				<label for="endDate">End Date</label>
+				<input type="date" id="endDate" value="yyyy-MM-dd" />
+				<label for="firstName">First Name:</label>
+				<input type="text" id="firstName" placeholder="Enter First Name" />
+				<label for="lastName">Last Name:</label>
+				<input type="text" id="lastName" placeholder="Enter Last Name" />
+			</fieldset>
+		</main>
 
 		<div id="footer-placeholder"></div>
 

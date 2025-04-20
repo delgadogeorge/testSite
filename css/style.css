@@ -7,21 +7,13 @@ body {
 	text-align: center;
 }
 
- /* .navbar .custom-text-color {
-	color: white;
-} */
-
 .search-btn-bg {
-	background-color:rgb(0, 84, 240);
-} 
+	background-color: #155fce;
+	border-color: #0066ff;
+}
 
-footer {
-	background-color: #333;
-	color: white;
-	padding: 2px;
-	text-align: center;
-	width: 100%;
-	bottom: 0;
+.search-btn-bg:hover {
+	background-color: rgb(1, 76, 214);
 }
 
 .scrollable-window {
@@ -122,8 +114,7 @@ input {
 }
 
 .drop-zone.dragover {
-	background-color: #e1f0ff
+	background-color: #e1f0ff;
 	cursor: pointer;
 	border-color: #0d6efd;
 }
-
