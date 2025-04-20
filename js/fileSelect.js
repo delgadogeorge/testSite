@@ -62,29 +62,4 @@ document.addEventListener("DOMContentLoaded", function () {
 			processExcelFiles(allFiles);
 		}
 	}
-
-	const resetButton = document.getElementById("resetFiles");
-
-	resetButton.addEventListener("click", () => {
-		allFiles = [];
-		fileInput.value = "";
-		fileListDisplay.innerHTML = "";
-		document.getElementById("output").innerHTML = "";
-
-		// Optional: reset visual state
-		const overlay = document.getElementById("overlay-message");
-		const container = document.getElementById("json-data");
-		const showContainer = document.getElementById("show");
-
-		if (overlay) {
-			overlay.classList.remove("d-none");
-			overlay.classList.add("d-flex");
-		}
-		if (container) {
-			container.classList.add("blurred");
-		}
-	});
 });
-
-//Drag and drop works for the entire box but not for clicking.
-//I need to update so "click" can be used anywhere on the box.
