@@ -58,9 +58,21 @@
 									Filter by Data type
 								</button>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">Valid Data</a></li>
-									<li><a class="dropdown-item" href="#">Forced Door</a></li>
-									<li><a class="dropdown-item" href="#">Null Data</a></li>
+									<li>
+										<a class="dropdown-item" href="#" data-filter="Valid"
+											>Valid</a
+										>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#" data-filter="Forced Door"
+											>Forced Door</a
+										>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#" data-filter="Null"
+											>Null</a
+										>
+									</li>
 								</ul>
 							</div>
 							<button id="resetFiles" class="btn btn-danger">
@@ -101,12 +113,11 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/include.js"></script>
+		<script src="js/fileSelect.js"></script>
 		<script src="js/fileReader.js"></script>
 		<script src="js/filterTable.js"></script>
-		<script src="js/exportFile.js"></script>
-		<script src="js/include.js"></script>
 		<script src="js/displayTable.js"></script>
-		<script src="js/fileUpload.js"></script>
-		<script src="js/tempMessage.js"></script>
+		<script src="js/exportFile.js"></script>
 	</body>
 </html>
