@@ -17,3 +17,40 @@ function filterTable() {
 }
 
 element.onkeyup = filterTable;
+
+//functionality to sort data by Type (Valid, Null, Forced Door, Show All)
+window.addEventListener("DOMContentLoaded", () => {
+	document.querySelectorAll(".dropdown-item").forEach(item => {
+		item.addEventListener('click', function(e) {
+			e.preventDefault();
+			const filterVal = this.getAttribute("data-filter");
+			filterTablebyType(filterVal);
+		});
+	});
+});
+
+function filterTablebyType(filterVal){
+	const rows = document.querySelectorAll("#output table tbody tr");
+	rows.forEach(row => {
+		const eventTypeCell = row.cells[3];
+		const sourceCell = row.cells[1];
+		if(!sourceCell || !eventTypeCell) return;
+
+		const isForcedDoor = eventTypeCell.textContent.trim().toLowerCase().includes("forced");
+		const isNullType = sourceCell.textContent.toLowerCase() === "null";
+
+		if(filterVal === "Null"){
+			row.style.display = isNullType ? "" : "none";
+		} else if (filterVal === "Forced Door") {
+			row.style.display = isForcedDoor ? "" : "none";
+		} else if (filterVal === "Valid") {
+			if(!isNullType && !isForcedDoor){
+				row.style.display = "";
+			} else {
+				row.style.display= "none";
+			}
+		} else { //show all
+			row.style.display = "";	
+		}
+	});
+}
