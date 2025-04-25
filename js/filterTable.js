@@ -54,3 +54,21 @@ function filterTablebyType(filterVal){
 		}
 	});
 }
+
+function formatDateTime(rawDateTime) {
+	const date = new Date(rawDateTime);
+
+	if(isNaN(date.getTime())) return rawDateTime; //return orginal Date/Time string if unable to convert to Date object
+
+	const pad = (n) => n.toString().padStart(2, "0");
+
+	const MM = pad(date.getMonth() + 1);
+	const DD = pad(date.getDate());
+	const YYYY = date.getFullYear();
+
+	const HH = pad(date.getHours());
+	const mm = pad(date.getMinutes());
+	const ss = pad(date.getSeconds());
+
+	return `${MM}/${DD}/${YYYY} ${HH}:${mm}:${ss}`;
+}

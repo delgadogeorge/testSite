@@ -39,7 +39,11 @@ function displayTable(data) {
 	data.forEach((row) => {
 		output += "<tr>";
 		for (let columnHead in row) {
-			output += `<td>${row[columnHead]}</td>`;
+			let cellValue = row[columnHead];
+			if(columnHead.toLowerCase().includes("date")){
+				cellValue = formatDateTime(cellValue);
+			}
+			output += `<td>${cellValue}</td>`;
 		}
 		output += "</tr>";
 	});
