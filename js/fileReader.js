@@ -39,8 +39,7 @@ function processExcelFiles(files) {
 			const workbook = XLSX.read(data, { type: "array" });
 			const sheetName = workbook.SheetNames[0];
 			const worksheet = workbook.Sheets[sheetName];
-			const json = XLSX.utils.sheet_to_json(worksheet, { raw: false });
-
+			const json = XLSX.utils.sheet_to_json(worksheet, {raw: true, cellDates: false });
 			const jsonFilter = json.map((row) => {
 				let source = row["Source"]?.toLowerCase() || "";
 				let badgeEntry = "";
