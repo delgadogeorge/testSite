@@ -32,7 +32,8 @@ function displayTable(data) {
 	let output = '<table class="table table-sm table-striped">';
 	output += "<thead><tr>";
 	for (let columnHead in data[0]) {
-		output += `<th scope="col">${columnHead}</th>`;
+		//output += `<th scope="col">${columnHead}</th>`;
+		output += `<th scope="col" class="sortable" data-column="${columnHead}">${columnHead}</th>`;
 	}
 	output += '</tr></thead><tbody class="table-group-divider">';
 

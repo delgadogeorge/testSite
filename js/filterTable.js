@@ -74,3 +74,44 @@ function formatDateTime(rawDateTime) {
 		const ss = pad(date.getSeconds());
 		return `${MM}/${DD}/${YYYY} ${HH}:${mm}:${ss}`;
 }
+
+function inferType(val){ //helper function for table sorting
+	const trimmed = String(val).trim();
+
+	//check for Date
+	if(trimmed.includes(": ") || trimmed.includes("/")){
+		const date = new Date(trimmed);
+		if(!isNaN(date.getTime())){
+			return date.getTime();
+		}
+	}
+	//check for number
+	const num = Number(trimmed);
+	if(!isNaN(num)){
+		return num;
+	}
+	//check for string (default)
+	return trimmed.toLowerCase();
+}
+
+//functionality to sort table by selected column header
+document.addEventListener("click", function(e){
+	if(!e.target.matches("th.sortable")) return;
+
+	const table = e.target.closest("table");
+	const tbody = table.querySelector("tbody");
+	const index = [...e.target.parentNode.children].indexOf(e.target);
+	const ascending = e.target.classList.toggle("asc");
+	const rows = Array.from(tbody.querySelectorAll("tr"));
+
+	rows.sort((a, b) => {
+		const aVal = inferType(a.cells[index]?.textContent || "");
+		const bVal = inferType(b.cells[index]?.textContent || "");
+
+		if(aVal > bVal) return ascending ? 1 : -1;
+		if(aVal < bVal) return ascending ? -1 : 1;
+		return 0;
+	}); 
+
+	rows.forEach(row => tbody.appendChild(row));
+});

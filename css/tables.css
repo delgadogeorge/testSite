@@ -6,6 +6,16 @@ body,
 
 table,
 th,
+th.sortable{
+    cursor: pointer;
+    text-align: center;
+}
+th.sortable.asc::after{
+    content: " ▲";
+}
+th.sortable:not(.asc)::after{
+    content: " ▼";
+}
 td {
     text-align: center;
     vertical-align: middle;
