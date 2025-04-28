@@ -32,14 +32,19 @@ function displayTable(data) {
 	let output = '<table class="table table-sm table-striped">';
 	output += "<thead><tr>";
 	for (let columnHead in data[0]) {
-		output += `<th scope="col">${columnHead}</th>`;
+		//output += `<th scope="col">${columnHead}</th>`;
+		output += `<th scope="col" class="sortable" data-column="${columnHead}">${columnHead}</th>`;
 	}
 	output += '</tr></thead><tbody class="table-group-divider">';
 
 	data.forEach((row) => {
 		output += "<tr>";
 		for (let columnHead in row) {
-			output += `<td>${row[columnHead]}</td>`;
+			let cellValue = row[columnHead];
+			if(columnHead.toLowerCase().includes("date")){
+				cellValue = formatDateTime(cellValue);
+			}
+			output += `<td>${cellValue}</td>`;
 		}
 		output += "</tr>";
 	});
