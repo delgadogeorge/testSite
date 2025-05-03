@@ -60,18 +60,22 @@ function formatDateTime(rawDateTime) {
 
 	let date;
 	if(typeof rawDateTime === "number"){
+		//Excel stores raw data as numbers from 1900
+		//25569 is the days between 1/1/1900 and start of unix epoch (1/1/70)
+		//Value is then converted to milliseconds and then used to create new JS data object
 		date = new Date(Math.round((rawDateTime-25569) * 86400 * 1000));
+		local_dt = new Date(date.getTime() + date.getTimezoneOffset() * 60000); //shift from UTC to local
 	} else {
 		return rawDateTime;
 	}
 
-		const MM = pad(date.getMonth() + 1);
-		const DD = pad(date.getDate());
-		const YYYY = date.getFullYear();
+		const MM = pad(local_dt.getMonth() + 1);
+		const DD = pad(local_dt.getDate());
+		const YYYY = local_dt.getFullYear();
 
-		const HH = pad(date.getHours());
-		const mm = pad(date.getMinutes());
-		const ss = pad(date.getSeconds());
+		const HH = pad(local_dt.getHours());
+		const mm = pad(local_dt.getMinutes());
+		const ss = pad(local_dt.getSeconds());
 		return `${MM}/${DD}/${YYYY} ${HH}:${mm}:${ss}`;
 }
 
