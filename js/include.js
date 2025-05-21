@@ -5,21 +5,21 @@
 //To see issue navigate to employee request form
 
 window.addEventListener("DOMContentLoaded", function () {
-	fetch("nav.html")
-		.then(function (res) {
-			return res.text();
-		})
+  fetch("nav.html")
+    .then(function (res) {
+      return res.text();
+    })
 
-		.then(function (data) {
-			document.getElementById("nav-placeholder").innerHTML = data;
-		});
+    .then(function (data) {
+      document.getElementById("nav-placeholder").innerHTML = data;
+    });
 
-	fetch("footer.html")
-		.then(function (res) {
-			return res.text();
-		})
+  fetch("footer.html")
+    .then(function (res) {
+      return res.text();
+    })
 
-		.then(function (data) {
-			document.getElementById("footer-placeholder").innerHTML = data;
-		});
+    .then(function (data) {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
 });

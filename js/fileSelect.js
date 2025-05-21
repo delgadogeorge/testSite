@@ -6,60 +6,60 @@
 let allFiles = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-	const dropZone = document.querySelector(".drop-zone");
-	const fileInput = document.getElementById("excelFile");
-	const fileListDisplay = document.getElementById("file-list");
+  const dropZone = document.querySelector(".drop-zone");
+  const fileInput = document.getElementById("excelFile");
+  const fileListDisplay = document.getElementById("file-list");
 
-	// Prevent browser default behavior globally
-	["dragenter", "dragover", "dragleave", "drop"].forEach((event) => {
-		window.addEventListener(event, (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-		});
-	});
+  // Prevent browser default behavior globally
+  ["dragenter", "dragover", "dragleave", "drop"].forEach((event) => {
+    window.addEventListener(event, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
 
-	// Drag styling
-	dropZone.addEventListener("dragover", () =>
-		dropZone.classList.add("dragover")
-	);
-	dropZone.addEventListener("dragleave", () =>
-		dropZone.classList.remove("dragover")
-	);
+  // Drag styling
+  dropZone.addEventListener("dragover", () =>
+    dropZone.classList.add("dragover")
+  );
+  dropZone.addEventListener("dragleave", () =>
+    dropZone.classList.remove("dragover")
+  );
 
-	// Handle file drop
-	dropZone.addEventListener("drop", (e) => {
-		dropZone.classList.remove("dragover");
-		if (e.dataTransfer.files.length > 0) {
-			handleFiles(e.dataTransfer.files);
-		}
-	});
+  // Handle file drop
+  dropZone.addEventListener("drop", (e) => {
+    dropZone.classList.remove("dragover");
+    if (e.dataTransfer.files.length > 0) {
+      handleFiles(e.dataTransfer.files);
+    }
+  });
 
-	// Handle file input selection
-	fileInput.addEventListener("change", () => {
-		if (fileInput.files.length > 0) {
-			handleFiles(fileInput.files);
-		}
-	});
+  // Handle file input selection
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+      handleFiles(fileInput.files);
+    }
+  });
 
-	// Main handler to process and store files
-	function handleFiles(newFiles) {
-		const fileArray = Array.from(newFiles);
+  // Main handler to process and store files
+  function handleFiles(newFiles) {
+    const fileArray = Array.from(newFiles);
 
-		const existingFileNames = new Set(allFiles.map((f) => f.name));
-		const newUniqueFiles = fileArray.filter(
-			(file) => !existingFileNames.has(file.name)
-		);
+    const existingFileNames = new Set(allFiles.map((f) => f.name));
+    const newUniqueFiles = fileArray.filter(
+      (file) => !existingFileNames.has(file.name)
+    );
 
-		allFiles = allFiles.concat(newUniqueFiles);
+    allFiles = allFiles.concat(newUniqueFiles);
 
-		// Show the list of file names
-		fileListDisplay.innerHTML = allFiles
-			.map((file) => `<div>${file.name}</div>`)
-			.join("");
+    // Show the list of file names
+    fileListDisplay.innerHTML = allFiles
+      .map((file) => `<div>${file.name}</div>`)
+      .join("");
 
-		// Optional: trigger your processing logic
-		if (typeof processExcelFiles === "function") {
-			processExcelFiles(allFiles);
-		}
-	}
+    // Optional: trigger your processing logic
+    if (typeof readFiles === "function") {
+      readFiles(allFiles);
+    }
+  }
 });

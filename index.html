@@ -1,123 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Timecard Demo</title>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/tables.css" />
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16 32x32 48x48"
-			href="images/Linux-Logo.wine.png"
-		/>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Timecard Demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/tables.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16 32x32 48x48"
+      href="images/Linux-Logo.wine.png"
+    />
+  </head>
 
-	<body class="d-flex flex-column min-vh-100">
-		<div id="nav-placeholder"></div>
-		<main class="flex-grow-1 upload-docs">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-4 p-2 border-end" id="upload-docs">
-						<h1 class="upload-h1">Upload File(s)</h1>
-						<div
-							id="dropZone"
-							class="drop-zone border border-2 border-primary rounded p-4 mb-3 text-center"
-							aria-label="Click to upload Excel File(s)"
-						>
-							<input
-								type="file"
-								id="excelFile"
-								accept=".xlsx,.xls"
-								multiple
-								hidden
-							/>
-							<label for="excelFile" class="d-block w-100 cursor-pointer">
-								<p class="mb-2 fw-medium border-bottom border-2">
-									Drag & Drop your Excel file(s) here or click to select
-								</p>
-							</label>
-							<div id="file-list" class="fw-medium text-muted mt-2"></div>
-						</div>
-						<form class="d-flex flex-wrap align-items-center gap-2">
-							<button class="btn btn-primary" id="exportData" type="button">
-								Export Modified Data
-							</button>
-							<div class="dropdown">
-								<button
-									class="btn btn-secondary dropdown-toggle"
-									type="button"
-									data-bs-toggle="dropdown"
-									aria-expanded="false"
-								>
-									Filter by Data type
-								</button>
-								<ul class="dropdown-menu">
-									<li>
-										<a class="dropdown-item" href="#" data-filter="Valid">Valid</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#" data-filter="Forced Door">Forced Door</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#" data-filter="Null">Null</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#" data-filter="Show All">Show All</a>
-									</li>
-								</ul>
-							</div>
-							<button id="resetFiles" class="btn btn-danger">
-								Reset Files
-							</button>
-						</form>
-						<form
-							class="d-flex align-items-center gap-2"
-							action=""
-							method="get"
-						>
-							<label for="searchBox">Search </label>
-							<input
-								class="form-control form-control-sm"
-								type="text"
-								id="searchBox"
-								placeholder="Search..."
-							/>
-						</form>
-					</div>
-					<div
-						id="json-data"
-						class="col-md-8 p-6 position-relative blurred my-3"
-					>
-						<div
-							id="overlay-message"
-							class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white bg-opacity-75 z-3"
-						>
-							<p class="overlay-content m-0 fs-5 fw-medium text-center">
-								Upload File(s) to see data
-							</p>
-						</div>
-						<div id="show">
-							<div id="output" class="scrollable-window"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-		<div id="footer-placeholder"></div>
+  <body class="d-flex flex-column min-vh-100">
+    <div id="nav-placeholder"></div>
+    <main class="flex-grow-1 upload-docs">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 p-2 border-end" id="upload-docs">
+            <h1 class="upload-h1">Upload File(s)</h1>
+            <div
+              id="dropZone"
+              class="drop-zone border border-2 border-primary rounded p-4 mb-3 text-center"
+              aria-label="Click to upload Excel File(s)"
+            >
+              <input
+                type="file"
+                id="excelFile"
+                accept=".xlsx,.xls"
+                multiple
+                hidden
+              />
+              <label for="excelFile" class="d-block w-100 cursor-pointer">
+                <p class="mb-2 fw-medium border-bottom border-2">
+                  Drag & Drop your Excel file(s) here or click to select
+                </p>
+              </label>
+              <div id="file-list" class="fw-medium text-muted mt-2"></div>
+            </div>
+            <form class="d-flex flex-wrap align-items-center gap-2">
+              <button class="btn btn-primary" id="exportData" type="button">
+                Export Modified Data
+              </button>
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Filter by Data type
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#" data-filter="Valid"
+                      >Valid</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" data-filter="Forced Door"
+                      >Forced Door</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" data-filter="Null"
+                      >Null</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" data-filter="Show All"
+                      >Show All</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <button id="resetFiles" class="btn btn-danger">
+                Reset Files
+              </button>
+            </form>
+            <form
+              class="d-flex align-items-center gap-2"
+              action=""
+              method="get"
+            >
+              <label for="searchBox">Search </label>
+              <input
+                class="form-control form-control-sm"
+                type="text"
+                id="searchBox"
+                placeholder="Search by Employee..."
+              />
+            </form>
+          </div>
+          <div
+            id="json-data"
+            class="col-md-8 p-6 position-relative blurred my-3"
+          >
+            <div
+              id="overlay-message"
+              class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white bg-opacity-75 z-3"
+            >
+              <p class="overlay-content m-0 fs-5 fw-medium text-center">
+                Upload File(s) to see data
+              </p>
+            </div>
+            <div id="show">
+              <div id="output" class="scrollable-window"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer-placeholder"></div>
 
-		<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="js/include.js"></script>
-		<script src="js/fileSelect.js"></script>
-		<script src="js/fileReader.js"></script>
-		<script src="js/filterTable.js"></script>
-		<script src="js/displayTable.js"></script>
-		<script src="js/exportFile.js"></script>
-	</body>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/include.js"></script>
+    <script src="js/fileSelect.js"></script>
+    <script src="js/readFiles.js"></script>
+    <script src="js/filterTable.js"></script>
+    <script src="js/displayTable.js"></script>
+    <script src="js/exportFile.js"></script>
+  </body>
 </html>
