@@ -28,7 +28,7 @@ function createKeys() {
     console.log(`${type}`, keys[type]);
   }
 
-  return sourceKeys;
+  return keys;
 }
 
 //Create an empy array of objects for file data
@@ -53,8 +53,9 @@ function readFiles(files) {
         raw: true,
         cellDates: false,
       });
+      console.log("json", json);
 
-      const jsonData = json.map((row) => {
+      jsonData = json.map((row) => {
         let source = row["Source"]?.toLowerCase() || "";
         let badgeEntry = "";
 
@@ -81,6 +82,9 @@ function readFiles(files) {
         return row;
       });
       console.log("jsonData", jsonData);
+
+      createEmployee(jsonData);
+
       filesProcessed++;
 
       if (filesProcessed === files.length) {
@@ -90,4 +94,6 @@ function readFiles(files) {
 
     reader.readAsArrayBuffer(file);
   }
+
+  // console.log("json length", json.length);
 }
