@@ -1,29 +1,54 @@
-const employee = {
-  First_Name: "",
-  Last_Name: "",
-  Badge: {
-    In: [{}], //push data -> "badgeType : dateTime"
-    Out: [{}],
-  },
-};
+function newEmployee(first, last) {
+  return {
+    "First Name": first,
+    "Last Name": last,
+    Badge: {},
+  };
+}
 
-const employeeData = [employee];
+//
+function createEmployees(data) {
+  //let i = 0;
+  const employees = [];
 
-let i = 0;
-function createEmployee(data) {
   data.forEach((row) => {
-    // console.log(`row${++i}`, row);
+    const first = row["First Name"];
+    const last = row["Last Name"];
 
-    for (const key in row) {
-      //   console.log("key data: ", `${row["First Name"]}`, `${row["Last Name"]}`);
-      var temp = employee;
-      temp.First_Name = row["First Name"];
-      temp.Last_Name = row["Last Name"];
-      temp.Badge.In.Source = row["Source"];
-      temp.Badge.In.Date_Time = row["Panel Date"];
+    /* The following section is used to console log
+    // if (row["First Name"] || row["Last Name"]) {
+    //   console.log(`Row [${i++}], Employee: `, `${first} ${last}`);
+    // } else i++;
+    */
 
-      employeeData.push(temp);
+    if (!first || !last) {
+      return;
     }
+
+    let temp = null;
+
+    for (const employeeCount in employees) {
+      const person = employees[employeeCount];
+      if (person["First Name"] === first && person["Last Name"] === last)
+        temp = person;
+    }
+
+    if (!temp) {
+      temp = newEmployee(first, last);
+      employees.push(temp);
+    }
+
+    const badgeType = row["Source"];
+    const dateTime = row["Panel Date"];
+
+    if (!temp.Badge[badgeType]) {
+      temp.Badge[badgeType] = [];
+    }
+
+    const entry = {};
+    entry[badgeType] = dateTime;
+    temp.Badge[badgeType].push(entry);
   });
-  console.log("employee data: ", employeeData);
+  console.log("Employees: ", employees);
+  return employees;
 }

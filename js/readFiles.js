@@ -21,11 +21,11 @@ function createKeys() {
     ],
   };
 
-  console.log("keys:", keys);
+  //console.log("keys:", keys);
 
   for (const type in keys) {
     keys[type] = keys[type].map((keyword) => keyword.toLowerCase());
-    console.log(`${type}`, keys[type]);
+    //console.log(`${type}`, keys[type]);
   }
 
   return keys;
@@ -35,7 +35,7 @@ function createKeys() {
 //readFiles() reads in a file(s) and converts data into readable information
 let jsonData = [];
 function readFiles(files) {
-  console.log("Files: ", files);
+  //console.log("Files: ", files);
 
   let filesProcessed = 0;
   const sourceType = createKeys();
@@ -53,7 +53,7 @@ function readFiles(files) {
         raw: true,
         cellDates: false,
       });
-      console.log("json", json);
+      //console.log("json", json);
 
       jsonData = json.map((row) => {
         let source = row["Source"]?.toLowerCase() || "";
@@ -83,12 +83,14 @@ function readFiles(files) {
       });
       console.log("jsonData", jsonData);
 
-      createEmployee(jsonData);
+      employeeData = createEmployees(jsonData);
 
       filesProcessed++;
 
       if (filesProcessed === files.length) {
         displayTable(jsonData);
+
+        //displayTable(employeeData) -> need to update displayTable.js to show data
       }
     };
 
