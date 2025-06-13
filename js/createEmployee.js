@@ -15,20 +15,21 @@ function createEmployees(data) {
     const first = row["First Name"];
     const last = row["Last Name"];
 
-    /* The following section is used to console log
-    // if (row["First Name"] || row["Last Name"]) {
-    //   console.log(`Row [${i++}], Employee: `, `${first} ${last}`);
-    // } else i++;
-    */
-
     if (!first || !last) {
       return;
     }
+    if (
+      /\bcontractor\b/i.test(first) ||
+      /\btemporary\b/i.test(first) ||
+      /\bemployee\b/i.test(last)
+    )
+      return;
 
     let temp = null;
 
     for (const employeeCount in employees) {
       const person = employees[employeeCount];
+
       if (person["First Name"] === first && person["Last Name"] === last)
         temp = person;
     }
@@ -52,3 +53,5 @@ function createEmployees(data) {
   console.log("Employees: ", employees);
   return employees;
 }
+
+function calculateHours(data) {}

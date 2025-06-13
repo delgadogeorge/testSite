@@ -1,47 +1,35 @@
-//This script was written with the help of AI.
-//This script adds drag/drop file features and can select the area to open file browser.
-//Multiple files are allowed.
-//This script displays the file names and has a reset button
-
 let allFiles = [];
 
-document.addEventListener("DOMContentLoaded", function () {
-  const dropZone = document.querySelector(".drop-zone");
-  const fileInput = document.getElementById("excelFile");
-  const fileListDisplay = document.getElementById("file-list");
+$(document).ready(() => {
+  $(window).on("dragenter dragover drop", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  });
 
-  // Prevent browser default behavior globally
-  ["dragenter", "dragover", "dragleave", "drop"].forEach((event) => {
-    window.addEventListener(event, (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+  $("#dropZone")
+    .$(this)
+    .on("mouseenter mouseleave", function (event) {
+      if (event.type === "mouseenter") $(this).addClass("border-primary");
+      else $(this).removeClass("border-primary");
     });
+
+  $("#dropZone").on("dragenter dragover dragleave drop", function (event) {
+    if (event.type === "dragover") $(this).addClass("dragover");
+    else if (event.type === "dragleave") $(this).removeClass("dragover");
   });
 
-  // Drag styling
-  dropZone.addEventListener("dragover", () =>
-    dropZone.classList.add("dragover")
-  );
-  dropZone.addEventListener("dragleave", () =>
-    dropZone.classList.remove("dragover")
-  );
-
-  // Handle file drop
-  dropZone.addEventListener("drop", (e) => {
-    dropZone.classList.remove("dragover");
-    if (e.dataTransfer.files.length > 0) {
-      handleFiles(e.dataTransfer.files);
-    }
+  $("#dropZone").on("drop", function (event) {
+    event.preventDefault();
+    $(this).removeClass("dragover");
+    if (event.originalEvent.dataTransfer.files.length > 0)
+      handleFiles(event.originalEvent.dataTransfer.files);
   });
 
-  // Handle file input selection
-  fileInput.addEventListener("change", () => {
-    if (fileInput.files.length > 0) {
-      handleFiles(fileInput.files);
-    }
+  $("#dropZone").on("click", function (event) {
+    if (event.originalEvent.dataTransfer.files.length > 0)
+      handleFiles(event.originalEvent.dataTransfer.files);
   });
 
-  // Main handler to process and store files
   function handleFiles(newFiles) {
     const fileArray = Array.from(newFiles);
 
@@ -53,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
     allFiles = allFiles.concat(newUniqueFiles);
 
     // Show the list of file names
-    fileListDisplay.innerHTML = allFiles
-      .map((file) => `<div>${file.name}</div>`)
+    $("#file-list").innerHTML = allFiles
+      .map((file) => `<span>${file.name}</span>`)
       .join("");
 
     // Optional: trigger your processing logic

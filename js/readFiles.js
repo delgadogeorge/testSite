@@ -89,6 +89,7 @@ function readFiles(files) {
 
       if (filesProcessed === files.length) {
         displayTable(jsonData);
+        // displayTable(employeeData);
 
         //displayTable(employeeData) -> need to update displayTable.js to show data
       }
